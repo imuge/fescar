@@ -13,20 +13,12 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.config.etcd;
-
-import io.seata.common.loader.LoadLevel;
-import io.seata.config.Configuration;
-import io.seata.config.ConfigurationProvider;
+package io.seata.core.rpc;
 
 /**
- * @author xingfudeshi@gmail.com
- * @date 2019/04/12
+ * The interface remoting client.
+ *
+ * @author zhaojun
  */
-@LoadLevel(name = "Etcd3", order = 1)
-public class EtcdConfigurationProvider implements ConfigurationProvider {
-    @Override
-    public Configuration provide() {
-        return EtcdConfiguration.getInstance();
-    }
+public interface RemotingClient extends RemotingService {
 }

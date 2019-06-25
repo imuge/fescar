@@ -13,20 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package io.seata.discovery.registery.etcd;
+package io.seata.server.event;
 
-import io.seata.common.loader.LoadLevel;
-import io.seata.discovery.registry.RegistryProvider;
-import io.seata.discovery.registry.RegistryService;
+import io.seata.core.event.EventBus;
+import io.seata.core.event.GuavaEventBus;
 
 /**
- * @author xingfudeshi@gmail.com
- * @date 2019/04/18
+ * Manager hold the singleton event bus instance.
+ *
+ * @author zhengyangyong
  */
-@LoadLevel(name = "Etcd3", order = 1)
-public class EtcdRegistryProvider implements RegistryProvider {
-    @Override
-    public RegistryService provide() {
-        return EtcdRegistryServiceImpl.getInstance();
+public class EventBusManager {
+    private static class SingletonHolder {
+        private static EventBus INSTANCE = new GuavaEventBus("tc");
+    }
+
+    public static final EventBus get() {
+        return SingletonHolder.INSTANCE;
     }
 }
